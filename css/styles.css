@@ -1,0 +1,44 @@
+body{
+    background-color: azure;
+}
+
+main{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+main h1{
+    color: #1B617B;
+}
+
+main .button-selector{
+    margin-bottom: 35px;
+    width: 600px;
+    display: inline-block;
+}
+
+main .button-selector button{
+    border-radius: 12px;
+    height: 35px;
+    width: 150px;
+    border: 1px solid #134558 ;
+    background-color: rgb(217, 227, 237);
+    color:#051c24;
+}
+
+main .button-selector button:hover{
+    cursor: pointer;
+    box-shadow: 0 0px 2px 0 #697d96;
+}
+
+
+main .random-dog-image{
+    margin-top: 35px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+main .random-dog-image #dog-image{
+    width: 800px;
+    box-shadow: 1px 1px 10px 0 #697d96;
+}
