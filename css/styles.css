@@ -35,10 +35,17 @@ main .button-selector button:hover{
 main .random-dog-image{
     margin-top: 35px;
     width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin: 0 auto;
+    justify-content: center;
 }
 
-main .random-dog-image #dog-image{
-    width: 800px;
+main .random-dog-image img{
+    width: 500px;
+    height: 600px ;
+    margin-right: 15px;
+    margin-top: 15px;
     box-shadow: 1px 1px 10px 0 #697d96;
+    align-items: center;
 }
