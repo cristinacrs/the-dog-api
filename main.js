@@ -2,6 +2,8 @@ const API_URL_RANDOM = "https://api.thedogapi.com/v1/images/search?limit=4&api_k
 
 const API_URL_FAVORITES = "https://api.thedogapi.com/v1/favourites?api_key=live_bNjfPgUbNaeqBZJKTBOxgdjE8lJQGWS45tZQXYUsa60wvdkpWLPPjrTQXJ0jIRAk"
 
+const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}?api_key=live_bNjfPgUbNaeqBZJKTBOxgdjE8lJQGWS45tZQXYUsa60wvdkpWLPPjrTQXJ0jIRAk`;
+
 const button = document.querySelector('#new-dog');
 const spanError = document.getElementById('error');
 
@@ -63,6 +65,14 @@ const loadFavoriteDogs = async (urlApi)=>{
         console.log('Favorites');
         console.log(result);
 
+        const section = document.getElementById('favorites')
+        section.innerHTML = "";
+    
+        const h2 = document.createElement('h2');
+        const h2Text = document.createTextNode('Favorites');
+        h2.appendChild(h2Text);
+        section.appendChild(h2);
+
         result.forEach(dog => {
             const section = document.getElementById('favorites');
             const article = document.createElement('article');
@@ -71,6 +81,7 @@ const loadFavoriteDogs = async (urlApi)=>{
             const btnText = document.createTextNode('Remove');
 
             btn.appendChild(btnText);
+            btn.onclick = () => deleteFavoriteDog(dog.id);
             img.src = dog.image.url;
             article.appendChild(img);
             article.appendChild(btn);
@@ -99,15 +110,32 @@ async function saveFavoriteDog(id){
 
     if (response.status !== 200) {
         spanError.innerHTML = "Hubo un error: " + response.status;
+    }else{
+        console.log("Dog saved in favorites");
+        loadFavoriteDogs(API_URL_FAVORITES);
     }
 }
 
-button.addEventListener('click', newDog);
+async function deleteFavoriteDog(id){
+    const response = await fetch(API_URL_FAVORITES_DELETE(id), {
+        method: 'DELETE',
+    });
 
-function newDog(){
+    if (response.status !== 200) {
+        spanError.innerHTML = "Hubo un error: " + response.status;
+    }else{
+        console.log("Dog removed from favorites");
+        loadFavoriteDogs(API_URL_FAVORITES);
+
+    }
+}
+
+button.addEventListener('click', loadDogs);
+
+function loadDogs(){
     button.onclick= loadRandomDogs(API_URL_RANDOM);
 }
 
-newDog();
+loadDogs();
 
 loadFavoriteDogs(API_URL_FAVORITES);
