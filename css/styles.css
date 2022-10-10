@@ -79,7 +79,7 @@ main .random-dog-image button{
     margin: 10px;
 }
 
-#remove-favorite-dog{
+#favorites article button{
     border-radius: 5px;
     height: 40px;
     width: 150px;
@@ -88,16 +88,17 @@ main .random-dog-image button{
     font-size: 14px;
     font-weight: 200;
     background-color: white;
+    margin-top: 15px;
 }
 
-#remove-favorite-dog:hover{
+#favorites article button:hover{
     cursor: pointer;
     box-shadow: 0 0px 10px 0 #a43333;
     background-color: red;
     color: white;
 }
 
-#save-favorite{
+.save-favorite{
     border-radius: 5px;
     height: 40px;
     width: 50px;
@@ -109,7 +110,7 @@ main .random-dog-image button{
     background-color: white;
 }
 
-#save-favorite:hover{
+.save-favorite:hover{
     cursor: pointer;
     box-shadow: 0 0px 3px 0 orange;
     background-color: orangered;
@@ -117,10 +118,20 @@ main .random-dog-image button{
 }
 
 #favorites article{
+    display: inline-grid;
     margin: 0 auto;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
     justify-content: center;
+    margin-bottom: 10px;
+    justify-items: center;
+}
+
+#favorites article img{
+    width: 250px;
+    height: 280px ;
+    margin-right: 15px;
+    margin-top: 15px;
+    box-shadow: 1px 1px 5px 0 #697d96;
+    align-items: center;
 }
 
 #warning{

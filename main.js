@@ -35,11 +35,21 @@ const loadRandomDogs = async (urlApi) =>{
         const img2 = document.querySelector('#dog-image2');
         const img3 = document.querySelector('#dog-image3');
 
+        const btn = document.querySelector('#btn');
+        const btn1 = document.querySelector('#btn1');
+        const btn2 = document.querySelector('#btn2');
+        const btn3 = document.querySelector('#btn3');
+
 
         img.setAttribute("src", result[0].url);
         img1.setAttribute("src", result[1].url);
         img2.setAttribute("src", result[2].url);
         img3.setAttribute("src", result[3].url);
+
+        btn.onclick = ()=> saveFavoriteDog(result[0].id);
+        btn1.onclick = ()=> saveFavoriteDog(result[1].id);
+        btn2.onclick = ()=> saveFavoriteDog(result[2].id);
+        btn3.onclick = ()=> saveFavoriteDog(result[3].id);
 
     } catch(error){
         console.error(error);
@@ -48,8 +58,24 @@ const loadRandomDogs = async (urlApi) =>{
 
 const loadFavoriteDogs = async (urlApi)=>{
     try{
+
         const result = await fetchData(urlApi);
+        console.log('Favorites');
         console.log(result);
+
+        result.forEach(dog => {
+            const section = document.getElementById('favorites');
+            const article = document.createElement('article');
+            const img = document.createElement('img');
+            const btn = document.createElement('button');
+            const btnText = document.createTextNode('Remove');
+
+            btn.appendChild(btnText);
+            img.src = dog.image.url;
+            article.appendChild(img);
+            article.appendChild(btn);
+            section.appendChild(article);
+        });
 
     }catch(error){
         console.error(error);
@@ -57,14 +83,14 @@ const loadFavoriteDogs = async (urlApi)=>{
 
 }
 
-async function saveFavoriteDogs(){
+async function saveFavoriteDog(id){
     const response = await fetch(API_URL_FAVORITES, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            image_id: 'GFVvIZ0B3'
+            image_id: id
         }),
     });
 
