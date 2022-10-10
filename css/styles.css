@@ -145,3 +145,49 @@ main .random-dog-image button{
     justify-content: center;
     display: flex;
 }
+
+#uploadingDog #uploadingForm{
+    display: inline-grid;
+    grid-template-rows: 2;
+    margin:0 auto;
+    justify-content: center;
+    text-align: center;
+}
+
+#uploadingDog #uploadingForm input::file-selector-button{
+    height: 45px;
+    width: 150px;
+    border: 2px solid #0fb3c5;
+    border-radius: 5px;
+    color: #0fb3c5;
+    margin-bottom: 35px;
+    background-color: white;
+    font-weight: bold;
+}
+
+#uploadingDog #uploadingForm input::file-selector-button:hover{
+    background-color: #0fb3c5;
+    cursor: pointer;
+    box-shadow: 0 0px 3px 0 rgb(37, 75, 243);
+    color: white;
+}
+
+
+#uploadingDog #uploadingForm button{
+    height: 45px;
+    width: 150px;
+    border: 2px solid #0fc561;
+    border-radius: 5px;
+    color: #0fc561;
+    background-color: white;
+    font-weight: bold;
+    margin: 0 auto;
+    align-items: center;
+}
+
+#uploadingDog #uploadingForm button:hover{
+    background-color: #0fc561;;
+    cursor: pointer;
+    box-shadow: 0 0px 3px 0 rgb(16, 161, 31);
+    color: white;
+}

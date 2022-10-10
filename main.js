@@ -4,6 +4,8 @@ const API_URL_FAVORITES = "https://api.thedogapi.com/v1/favourites"
 
 const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourites/${id}`;
 
+const API_URL_UPLOAD = "https://api.thedogapi.com/v1/images/upload";
+
 const button = document.querySelector('#new-dog');
 const spanError = document.getElementById('error');
 
@@ -75,7 +77,7 @@ const loadFavoriteDogs = async (urlApi)=>{
         section.innerHTML = "";
     
         const h2 = document.createElement('h2');
-        const h2Text = document.createTextNode('Favorites');
+        const h2Text = document.createTextNode('Favorites ❤️');
         h2.appendChild(h2Text);
         section.appendChild(h2);
 
@@ -144,6 +146,35 @@ button.addEventListener('click', loadDogs);
 
 function loadDogs(){
     button.onclick= loadRandomDogs(API_URL_RANDOM);
+}
+
+async function uploadDogPhoto(){
+    const form = document.getElementById('uploadingForm');
+    const formData = new FormData(form);
+
+    console.log(formData.get('file'));
+
+    const res = await fetch(API_URL_UPLOAD,{
+        method: 'POST',
+        headers:{
+            //'Content-Type': 'multipart/form-data',
+            'X-API-KEY': 'live_bNjfPgUbNaeqBZJKTBOxgdjE8lJQGWS45tZQXYUsa60wvdkpWLPPjrTQXJ0jIRAk',
+        },
+        body: formData,
+    })
+
+    const data = await res.json()
+
+    if (res.status !== 201) {
+        spanError.innerHTML = `Error: ${res.status} ${data.message}`
+    }
+    else {
+        console.log("Photo uploaded:");
+        console.log({ data });
+        console.log(data.url);
+        saveFavoriteDog(data.id);
+    }
+
 }
 
 loadDogs();
