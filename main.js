@@ -6,6 +6,10 @@ const API_URL_FAVORITES_DELETE = (id) => `https://api.thedogapi.com/v1/favourite
 
 const API_URL_UPLOAD = "https://api.thedogapi.com/v1/images/upload";
 
+const API_URL_IMAGES="https://api.thedogapi.com/v1/images?limit=20";
+
+const API_URL_UPLOADED_DELETE = (id) => `https://api.thedogapi.com/v1/images/${id}`;
+
 const button = document.querySelector('#new-dog');
 const spanError = document.getElementById('error');
 
@@ -60,7 +64,7 @@ const loadRandomDogs = async (urlApi) =>{
     }
 }
 
-const loadFavoriteDogs = async (urlApi)=>{
+const loadFavoriteDogs = async ()=>{
     try{
         const response = await fetch(API_URL_FAVORITES, {
             method: 'GET',
@@ -196,3 +200,37 @@ const previewDog = () =>{
 loadDogs();
 
 loadFavoriteDogs(API_URL_FAVORITES);
+
+//ver las imágenes cargadas
+const getImages = async (urlApi)=>{
+    try{
+        const response = await fetch(API_URL_IMAGES, {
+            method: 'GET',
+            headers: {
+                'X-API-KEY': 'live_bNjfPgUbNaeqBZJKTBOxgdjE8lJQGWS45tZQXYUsa60wvdkpWLPPjrTQXJ0jIRAk',
+            },
+        });
+        const result = await response.json();
+
+        console.log('Images');
+        console.log(result);
+
+    }catch(error){
+        console.error(error);
+    }
+
+}
+
+// Para borrar con id en especifico
+async function deleteDog(){
+    const response = await fetch(API_URL_UPLOADED_DELETE("VNwkIdwSK"), {
+        method: 'DELETE',
+        headers:{
+            'X-API-KEY': 'live_bNjfPgUbNaeqBZJKTBOxgdjE8lJQGWS45tZQXYUsa60wvdkpWLPPjrTQXJ0jIRAk',
+        }
+    });
+
+    console.log("Dog removed");
+
+}
+
