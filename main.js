@@ -10,6 +10,12 @@ const API_URL_IMAGES="https://api.thedogapi.com/v1/images?limit=20";
 
 const API_URL_UPLOADED_DELETE = (id) => `https://api.thedogapi.com/v1/images/${id}`;
 
+const api = axios.create({
+    baseURL: 'https://api.thedogapi.com/v1/'
+})
+
+api.defaults.headers.common['X-API-KEY'] = 'live_bNjfPgUbNaeqBZJKTBOxgdjE8lJQGWS45tZQXYUsa60wvdkpWLPPjrTQXJ0jIRAk';
+
 const button = document.querySelector('#new-dog');
 const spanError = document.getElementById('error');
 
@@ -107,7 +113,7 @@ const loadFavoriteDogs = async ()=>{
 }
 
 async function saveFavoriteDog(id){
-    const response = await fetch(API_URL_FAVORITES, {
+    /* const response = await fetch(API_URL_FAVORITES, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -116,13 +122,16 @@ async function saveFavoriteDog(id){
         body: JSON.stringify({
             image_id: id
         }),
+    }); */
+
+    const {data, status}= await api.post('/favourites',{
+        image_id: id,
     });
 
-    console.log('Save')
-    console.log(response)
+    console.log('Save');
 
-    if (response.status !== 200) {
-        spanError.innerHTML = "Hubo un error: " + response.status;
+    if (status !== 200) {
+        spanError.innerHTML = "Hubo un error: " + status;
     }else{
         console.log("Dog saved in favorites");
         loadFavoriteDogs(API_URL_FAVORITES);
