@@ -148,7 +148,7 @@ main .random-dog-image button{
 
 #uploadingDog #uploadingForm{
     display: inline-grid;
-    grid-template-rows: 2;
+    grid-template-rows: 3;
     margin:0 auto;
     justify-content: center;
     text-align: center;
@@ -182,6 +182,7 @@ main .random-dog-image button{
     background-color: white;
     font-weight: bold;
     margin: 0 auto;
+    margin-top: 15px;
     align-items: center;
 }
 
@@ -190,4 +191,10 @@ main .random-dog-image button{
     cursor: pointer;
     box-shadow: 0 0px 3px 0 rgb(16, 161, 31);
     color: white;
+}
+
+#uploadingDog #uploadingForm #previewImage{
+    align-items: center;
+    margin-bottom: 25px;
+    margin: 0 auto;
 }

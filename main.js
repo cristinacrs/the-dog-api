@@ -177,6 +177,22 @@ async function uploadDogPhoto(){
 
 }
 
+const previewDog = () =>{
+
+    //accediendo al primer archivo de files cargados
+    const file = document.getElementById('file').files[0];
+    console.log(file);
+
+    const img = document.getElementById('previewImage');
+
+    //creamos un url para la imagen utilizando a file
+    img.src = URL.createObjectURL(file);
+
+    img.width= 250;
+    img.height= 280;
+
+}
+
 loadDogs();
 
 loadFavoriteDogs(API_URL_FAVORITES);

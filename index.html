@@ -63,7 +63,8 @@
             <h2>Upload your dog 🤓</h2>
 
             <form id="uploadingForm">
-                <input id="file" type="file" name="file">
+                <input onchange="previewDog();" id="file" type="file" name="file">
+                <img id="previewImage">
                 <button type="button" onclick="uploadDogPhoto()"><i class="bi bi-upload"></i> Upload</button>
             </form>
         </section>
